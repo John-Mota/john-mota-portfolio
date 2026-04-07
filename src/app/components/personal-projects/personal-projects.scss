@@ -1,0 +1,46 @@
+@import '../../../styles.scss';
+
+.personal-card {
+  &::before {
+    background: linear-gradient(90deg, transparent, $violet-400, transparent);
+  }
+
+  &:hover {
+    border-color: $violet-400;
+  }
+}
+
+.personal-card__header {
+  @include flex-between;
+  margin-bottom: $space-md;
+
+  .card__title {
+    margin-bottom: 0;
+  }
+}
+
+.status-badge {
+  font-size: 0.70rem;
+  padding: 4px 8px;
+  border-radius: $radius-full;
+  background-color: rgba($violet-500, 0.1);
+  color: $violet-300;
+  border: 1px solid rgba($violet-500, 0.2);
+
+  &--done {
+    background-color: rgba(#10b981, 0.1); // green
+    color: #34d399;
+    border-color: rgba(#10b981, 0.2);
+  }
+}
+
+.links {
+  display: flex;
+  gap: $space-sm;
+  
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-xs;
+  }
+}
