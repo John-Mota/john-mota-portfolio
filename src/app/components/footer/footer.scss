@@ -1,0 +1,117 @@
+@import '../../../styles.scss';
+
+.footer {
+  background-color: var(--bg-elevated);
+  padding-top: $space-3xl;
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: $space-2xl;
+  margin-bottom: $space-3xl;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $space-xl;
+  }
+}
+
+.footer-brand {
+  .logo {
+    font-weight: $fw-black;
+    font-size: $font-xl;
+    margin-bottom: $space-sm;
+    color: var(--text-main);
+    
+    span {
+      color: var(--primary);
+    }
+  }
+
+  .footer-desc {
+    color: var(--text-sec);
+    max-width: 400px;
+    line-height: $leading-relaxed;
+  }
+}
+
+.footer-links, .footer-social {
+  h4 {
+    font-size: $font-lg;
+    margin-bottom: $space-md;
+    color: var(--text-main);
+  }
+}
+
+.footer-links nav {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+
+  a {
+    color: var(--text-sec);
+    transition: color $transition-base;
+    
+    &:hover {
+      color: var(--primary);
+      padding-left: 4px;
+    }
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: $space-md;
+  
+  a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    @include flex-center;
+    transition: all $transition-base;
+    border: 1px solid var(--border);
+
+    &:hover {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.footer-bottom {
+  background-color: var(--bg-main);
+  padding: $space-lg 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom-content {
+  @include flex-between;
+  
+  p {
+    color: var(--text-muted);
+    font-size: $font-sm;
+  }
+}
+
+.back-to-top {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  @include flex-center;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+  }
+}
