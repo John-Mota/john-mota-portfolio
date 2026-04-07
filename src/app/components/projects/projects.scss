@@ -1,0 +1,9 @@
+@import '../../../styles.scss';
+
+.role {
+  font-size: $font-sm;
+  color: var(--text-sec);
+  strong {
+    color: var(--text-main);
+  }
+}
