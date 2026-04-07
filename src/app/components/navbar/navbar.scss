@@ -1,0 +1,49 @@
+@import '../../../styles.scss';
+
+.scrolled {
+  box-shadow: var(--shadow-sm);
+  background-color: var(--overlay);
+  @include glass(15px);
+}
+
+.navbar-actions {
+  display: flex;
+  gap: $space-md;
+  align-items: center;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: $space-xs;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Responding to the menu toggle on mobile devices
+@include tablet {
+  .nav-links {
+    position: fixed;
+    top: 80px; // below navbar
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-surface);
+    flex-direction: column;
+    padding: $space-xl;
+    gap: $space-lg;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-150%);
+    transition: transform $transition-smooth;
+    z-index: 99;
+
+    &.open {
+      transform: translateY(0);
+    }
+  }
+}
