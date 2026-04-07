@@ -1,0 +1,91 @@
+@import '../../../styles.scss';
+
+.stacks-section {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stacks-container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3xl;
+}
+
+.stack-category {
+  .category-title {
+    font-size: $font-xl;
+    font-weight: $fw-bold;
+    margin-bottom: $space-lg;
+    color: var(--text-sec);
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+  }
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: $space-lg;
+}
+
+.stack-item {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  background: var(--bg-elevated);
+  padding: $space-md;
+  border-radius: $radius-md;
+  border: 1px solid var(--border);
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--primary);
+    background: var(--bg-surface);
+    
+    .stack-icon {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba($violet-500, 0.4));
+    }
+  }
+}
+
+.stack-icon {
+  width: 40px;
+  height: 40px;
+  @include flex-center;
+  transition: transform $transition-base;
+  
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+}
+
+.stack-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.stack-name {
+  font-weight: $fw-semi;
+  color: var(--text-main);
+  font-size: $font-md;
+}
+
+.stack-level {
+  font-size: $font-xs;
+  color: var(--text-muted);
+}
