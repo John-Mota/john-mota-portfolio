@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-hero',
@@ -9,6 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./hero.scss']
 })
 export class HeroComponent {
+  themeService = inject(ThemeService);
+
   scrollToContact(event: Event) {
     event.preventDefault();
     const target = document.getElementById('footer');

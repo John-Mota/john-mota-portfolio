@@ -26,8 +26,11 @@
   </div>
 
   <div class="hero-image-wrapper">
-    <!-- Using a generic developer placeholder for now -->
-    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="John Mota Profile" class="hero-image" />
+    @if (themeService.currentTheme() === 'dark') {
+      <img src="/images/john-dark.jpeg" alt="John Mota Profile" class="hero-image" />
+    } @else {
+      <img src="/images/john-ligth.jpeg" alt="John Mota Profile" class="hero-image" />
+    }
     <div class="hero-image-backdrop"></div>
   </div>
 </section>
