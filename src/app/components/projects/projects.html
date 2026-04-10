@@ -7,30 +7,101 @@
     
     <div class="grid grid--3">
       @for (project of projects(); track project.id) {
-        <article class="card">
-          <img [src]="project.image" [alt]="project.name" class="card__image" loading="lazy">
-          
-          <h3 class="card__title">{{ project.name }}</h3>
-          <p class="card__description">{{ project.description }}</p>
-          
-          <div class="tags">
-            @for (tag of project.tags; track tag) {
-              <span class="tag">{{ tag }}</span>
+        <article class="card project-card">
+          <div class="carousel">
+            <img [src]="getCurrentImage(project)" [alt]="project.name" class="card__image" loading="lazy">
+            
+            @if (project.images.length > 1) {
+              <button class="carousel-btn carousel-btn--prev" (click)="prevImage(project)" aria-label="Imagem anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button class="carousel-btn carousel-btn--next" (click)="nextImage(project)" aria-label="Próxima imagem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              <div class="carousel-dots">
+                @for (img of project.images; track $index) {
+                  <span class="dot" [class.active]="(currentImageIndexMap.get(project.id) || 0) === $index"></span>
+                }
+              </div>
             }
           </div>
           
-          <footer class="card__footer">
-            <div class="role">
-              <strong>Papel:</strong> {{ project.role }}
+          <div class="card-content">
+            <h3 class="card__title">{{ project.name }}</h3>
+            <p class="card__description">{{ project.description }}</p>
+            
+            <div class="tags">
+              @for (tag of project.tags; track tag) {
+                <span class="tag">{{ tag }}</span>
+              }
             </div>
             
-            <a *ngIf="project.link" [href]="project.link" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary" aria-label="Ver projeto ao vivo">
-              Ver Projeto
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            </a>
-          </footer>
+            <footer class="card__footer">
+              <div class="role">
+                <strong>Papel:</strong> {{ project.role }}
+              </div>
+              
+              <div class="project-actions">
+                <button (click)="openDetails(project)" class="btn btn--sm btn--secondary">
+                  Ver Detalhes
+                </button>
+                
+                @if (project.link) {
+                  <a [href]="project.link" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">
+                    Acessar
+                  </a>
+                }
+              </div>
+            </footer>
+          </div>
         </article>
       }
     </div>
   </div>
+
+  @if (selectedProject()) {
+    <div class="modal-overlay" (click)="closeDetails()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="closeDetails()" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        
+        <div class="modal-body">
+          <div class="modal-header">
+            <h2 class="modal-title">{{ selectedProject()?.name }}</h2>
+            <div class="modal-tags">
+              @for (tag of selectedProject()?.tags; track tag) {
+                <span class="tag">{{ tag }}</span>
+              }
+            </div>
+          </div>
+          
+          <div class="modal-scroll-area">
+            <div class="modal-info">
+              <div class="info-item">
+                <strong>Papel no Projeto:</strong>
+                <span>{{ selectedProject()?.role }}</span>
+              </div>
+              @if (selectedProject()?.status) {
+                <div class="info-item">
+                  <strong>Status:</strong>
+                  <span>{{ selectedProject()?.status }}</span>
+                </div>
+              }
+            </div>
+
+            <div class="modal-description">
+              <h3>Sobre o Projeto</h3>
+              <p>{{ selectedProject()?.description }}</p>
+            </div>
+
+            <div class="modal-work">
+              <h3>Como eu trabalhei</h3>
+              <p>{{ selectedProject()?.details }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </section>
