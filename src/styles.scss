@@ -315,6 +315,7 @@ ul, ol {
 
     &:hover {
       background: var(--primary-hover);
+      color: #ffffff;
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
     }

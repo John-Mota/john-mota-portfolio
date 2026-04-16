@@ -10,7 +10,7 @@ export const PERSONAL_PROJECTS_DATA: Project[] = [
     role: null,
     link: null,
     repo: 'https://github.com/John-Mota/taskflow-api',
-    status: 'Em desenvolvimento'
+    status: 'Em andamento'
   },
   {
     id: 'autoflex-inventory-back',

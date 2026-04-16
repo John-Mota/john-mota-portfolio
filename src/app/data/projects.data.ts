@@ -11,7 +11,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     tags: ['Angular', 'Java', 'Spring Boot', 'PostgreSQL', 'Docker'],
     role: 'Desenvolvedor Full Stack',
-    link: 'https://matricula.seduc.ce.gov.br',
+    link: 'https://matriculahomolog.seduc.ce.gov.br',
     repo: null,
     details: 'Atuei no desenvolvimento de funcionalidades para o processo de solicitação de vagas e consulta de resultados. Trabalhei na implementação de regras de negócio para validação de vínculos escolares e na integração do frontend em Angular com os serviços backend em Spring Boot, garantindo a estabilidade necessária para o período de alta demanda da rede estadual.'
   },
