@@ -15,7 +15,6 @@ import { ThemeService } from './services/theme.service';
     HeroComponent,
     ProjectsComponent,
     PersonalProjectsComponent,
-    StacksComponent,
     FooterComponent
   ],
   templateUrl: './app.html',

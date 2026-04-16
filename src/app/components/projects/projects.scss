@@ -1,9 +1,450 @@
 @use "../../../variables" as *;
 
-.role {
+.project-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  padding: $space-sm $space-sm 0 $space-sm;
+  display: flex;
+  justify-content: center;
+  
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: $radius-lg;
+    transition: transform $transition-smooth;
+    box-shadow: var(--shadow-sm);
+    margin: 0%;
+  }
+
+  &:hover img {
+    transform: scale(1.02);
+  }
+}
+
+
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  @include flex-center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all $transition-base;
+  z-index: 2;
+
+  &:hover {
+    background: var(--primary);
+  }
+
+  &--prev { left: 8px; }
+  &--next { right: 8px; }
+}
+
+.carousel:hover .carousel-btn {
+  opacity: 1;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  z-index: 2;
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all $transition-base;
+
+    &.active {
+      background: var(--primary);
+      width: 12px;
+      border-radius: 3px;
+    }
+  }
+}
+
+.card-content {
+  padding: $space-xl;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__header {
+  margin-bottom: $space-sm;
+}
+
+.card__title {
+  margin-bottom: $space-xs;
+}
+
+.card__role {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: $font-sm;
-  color: var(--text-sec);
+  color: var(--primary);
+  font-weight: $fw-medium;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.card__footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: $space-md;
+}
+
+.project-actions {
+  display: flex;
+  gap: $space-sm;
+  width: 100%;
+  
+  .btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  @include flex-center;
+  padding: $space-md;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: var(--bg-surface);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  border-radius: $radius-xl;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-close {
+  position: absolute;
+  top: $space-lg;
+  right: $space-lg;
+  background: var(--bg-accent);
+  border: none;
+  color: var(--text-main);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  @include flex-center;
+  cursor: pointer;
+  transition: all $transition-base;
+  z-index: 10;
+
+  &:hover {
+    transform: rotate(90deg);
+    color: var(--primary);
+  }
+}
+
+.modal-body {
+  padding: $space-2xl;
+  overflow-y: auto;
+}
+
+.modal-header {
+  margin-bottom: $space-xl;
+  padding-right: $space-3xl;
+}
+
+.modal-title {
+  font-size: $font-2xl;
+  font-weight: $fw-bold;
+  margin-bottom: $space-sm;
+  color: var(--text-main);
+}
+
+.modal-tags {
+  display: flex;
+  gap: $space-xs;
+  flex-wrap: wrap;
+}
+
+.modal-scroll-area {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+}
+
+.modal-info {
+  display: flex;
+  gap: $space-xl;
+  padding: $space-md;
+  background: var(--bg-accent);
+  border-radius: $radius-md;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  font-size: $font-sm;
+
   strong {
-    color: var(--text-main);
+    color: var(--primary);
+    margin-bottom: 2px;
+  }
+}
+
+.modal-description, .modal-work {
+  h3 {
+    font-size: $font-lg;
+    margin-bottom: $space-sm;
+    color: var(--primary);
+    font-weight: $fw-semi;
+  }
+  
+  p {
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* --------------- NOVO CARROSSEL DE PROJETOS --------------- */
+
+.projects-section {
+  outline: none;
+  
+  &:focus-visible {
+    border-radius: $radius-lg;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 2px solid var(--primary);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+  }
+}
+
+.projects-carousel-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: $space-xl;
+}
+
+.projects-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 $space-xl;
+  margin: 0 auto;
+}
+
+.projects-carousel-viewport {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: $space-xl 0;
+  touch-action: pan-y pinch-zoom;
+}
+
+.projects-carousel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  padding: 0 $space-sm;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  
+  .project-card {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, opacity 0.5s ease;
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+
+  &.is-center .project-card {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: var(--shadow-md);
+    
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-xl);
+      z-index: 2;
+    }
+  }
+}
+
+.carousel-main-nav-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  @include flex-center;
+  cursor: pointer;
+  transition: all $transition-base;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &--prev {
+    left: 33.333%;
+    transform: translate(-50%, -50%);
+    
+    &:hover:not(:disabled) {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
+  &--next {
+    right: 33.333%;
+    transform: translate(50%, -50%);
+    
+    &:hover:not(:disabled) {
+      transform: translate(50%, -50%) scale(1.1);
+    }
+  }
+}
+
+.projects-carousel-dots-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-xl;
+}
+
+.projects-carousel-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .dot-btn {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+
+    &:hover {
+      background: var(--text-sec);
+      transform: scale(1.2);
+    }
+
+    &.active {
+      background: var(--primary);
+      width: 24px;
+      border-radius: 4px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-main-nav-btn {
+    width: 40px;
+    height: 40px;
+    
+    &--prev { margin-right: $space-sm; }
+    &--next { margin-left: $space-sm; }
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-main-nav-btn {
+    display: none; // Hides main arrows on mobile to rely on swipe
+  }
+  
+  .projects-carousel-viewport {
+    // Remove negative margin or reduce it for mobile if necessary
+    margin: 0;
+  }
+  
+  .carousel-slide {
+    padding: 0;
+  }
+
+  .projects-carousel-track {
+    // Optional: add a slight gap to avoid overlapping visual artifacts
+    gap: $space-md;
+  }
+
+  .carousel-slide {
+    // Se usarmos gap, a width deveria ser calc(100% - space /2) mas para simplificar
+    // E no TS tem calc(100% / itemsPerView), como items = 1 no mobile:
+    padding: 0 4px;
   }
 }

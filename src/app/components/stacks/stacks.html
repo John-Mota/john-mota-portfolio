@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="section-title section-title--center">
       <span class="section-title__label">Skills</span><br>
-      Tecnologias que Domino
+      Tecnologias e Conhecimentos
     </h2>
 
     <div class="stacks-container">
@@ -14,11 +14,15 @@
             @for (stack of category.items; track stack.name) {
               <div class="stack-item" [attr.aria-label]="stack.name">
                 <div class="stack-icon">
-                  <img [src]="'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/' + stack.icon" [alt]="stack.name">
+                  <img [src]="'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/' + stack.icon" [alt]="stack.name" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/devicon/devicon-original.svg'">
                 </div>
-                <div class="stack-info">
-                  <span class="stack-name">{{ stack.name }}</span>
-                  <span class="stack-level">{{ stack.level }}</span>
+
+                <div class="stack-tooltip">
+                  <strong>{{ stack.name }}</strong>
+                  <span class="badge">{{ stack.level }}</span>
+                  @if (stack.description) {
+                    <span class="desc">{{ stack.description }}</span>
+                  }
                 </div>
               </div>
             }

@@ -1,32 +1,102 @@
 import { Stack } from '../models/stack.model';
 
 export const STACKS_DATA: Stack[] = [
-  // Front-end
-  { name: 'Angular', icon: 'angular/angular-original.svg', category: 'Front-end', level: 'Avançado' },
-  { name: 'React', icon: 'react/react-original.svg', category: 'Front-end', level: 'Intermediário' },
-  { name: 'TypeScript', icon: 'typescript/typescript-original.svg', category: 'Front-end', level: 'Avançado' },
-  { name: 'JavaScript', icon: 'javascript/javascript-original.svg', category: 'Front-end', level: 'Avançado' },
-  { name: 'HTML5', icon: 'html5/html5-original.svg', category: 'Front-end', level: 'Avançado' },
-  { name: 'CSS3/SCSS', icon: 'css3/css3-original.svg', category: 'Front-end', level: 'Avançado' },
-  
-  // Back-end
-  { name: 'Node.js', icon: 'nodejs/nodejs-original.svg', category: 'Back-end', level: 'Avançado' },
-  { name: 'NestJS', icon: 'nestjs/nestjs-original.svg', category: 'Back-end', level: 'Intermediário' },
-  { name: 'Express', icon: 'express/express-original.svg', category: 'Back-end', level: 'Avançado' },
-  { name: 'Python', icon: 'python/python-original.svg', category: 'Back-end', level: 'Intermediário' },
-  { name: 'Java', icon: 'java/java-original.svg', category: 'Back-end', level: 'Iniciante' },
+  // Backend
+  { 
+    name: 'Java / Spring Boot', 
+    icon: 'spring/spring-original.svg', 
+    category: 'Backend', 
+    level: 'Intermediário',
+    description: '3+ anos, projetos reais em produção, sabe OOP, REST, arquitetura de microsserviços'
+  },
+  { 
+    name: 'SQL / PostgreSQL', 
+    icon: 'postgresql/postgresql-original.svg', 
+    category: 'Backend', 
+    level: 'Intermediário',
+    description: 'Usa no dia a dia, mas reconheceu gaps em fundamentos como JOINs complexos'
+  },
+  { 
+    name: 'Quarkus', 
+    icon: 'quarkus/quarkus-original.svg', 
+    category: 'Backend', 
+    level: 'Iniciante',
+    description: 'Autoestudo, zero produção'
+  },
+  { 
+    name: 'Microsserviços / Docker', 
+    icon: 'docker/docker-original.svg', 
+    category: 'Backend', 
+    level: 'Intermediário',
+    description: 'Usa na stack, tem pós em arquitetura'
+  },
+  { 
+    name: 'CI/CD / Observabilidade', 
+    icon: 'grafana/grafana-original.svg', 
+    category: 'Backend', 
+    level: 'Iniciante-Intermediário',
+    description: 'Conhecimento teórico sólido, prática mais limitada'
+  },
 
-  // Banco de Dados
-  { name: 'PostgreSQL', icon: 'postgresql/postgresql-original.svg', category: 'Banco de Dados', level: 'Avançado' },
-  { name: 'MongoDB', icon: 'mongodb/mongodb-original.svg', category: 'Banco de Dados', level: 'Intermediário' },
-  { name: 'MySQL', icon: 'mysql/mysql-original.svg', category: 'Banco de Dados', level: 'Avançado' },
+  // Frontend
+  { 
+    name: 'Angular', 
+    icon: 'angular/angular-original.svg', 
+    category: 'Frontend', 
+    level: 'Intermediário',
+    description: 'Uso profissional, projeto de portfólio ativo com PrimeNG'
+  },
+  { 
+    name: 'Vue.js', 
+    icon: 'vuejs/vuejs-original.svg', 
+    category: 'Frontend', 
+    level: 'Intermediário',
+    description: 'Faz parte da stack da Colmeia'
+  },
+  { 
+    name: 'React', 
+    icon: 'react/react-original.svg', 
+    category: 'Frontend', 
+    level: 'Iniciante-Intermediário',
+    description: 'Decisão recente de aprender para ampliar mercado, ainda construindo'
+  },
+  { 
+    name: 'TypeScript / JavaScript', 
+    icon: 'typescript/typescript-original.svg', 
+    category: 'Frontend', 
+    level: 'Iniciante-Intermediário',
+    description: 'Gaps identificados em fundamentos'
+  },
 
-  // DevOps/Infra
-  { name: 'Docker', icon: 'docker/docker-original.svg', category: 'DevOps/Infra', level: 'Intermediário' },
-  { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-original-wordmark.svg', category: 'DevOps/Infra', level: 'Intermediário' },
-  { name: 'Git', icon: 'git/git-original.svg', category: 'DevOps/Infra', level: 'Avançado' },
+  // Arquitetura / Engenharia
+  { 
+    name: 'Software Architecture', 
+    icon: 'amazonwebservices/amazonwebservices-original-wordmark.svg', 
+    category: 'Arquitetura / Engenharia', 
+    level: 'Intermediário',
+    description: 'Pós-graduação, aplica no trabalho'
+  },
+  { 
+    name: 'Software Engineering', 
+    icon: 'bash/bash-original.svg', 
+    category: 'Arquitetura / Engenharia', 
+    level: 'Intermediário',
+    description: 'Pós-graduação'
+  },
 
-  // Outros
-  { name: 'Figma', icon: 'figma/figma-original.svg', category: 'Outros', level: 'Intermediário' },
-  { name: 'Jira', icon: 'jira/jira-original.svg', category: 'Outros', level: 'Intermediário' }
+  // DevOps / Infra
+  { 
+    name: 'WSL2 / Linux', 
+    icon: 'linux/linux-original.svg', 
+    category: 'DevOps / Infra', 
+    level: 'Iniciante-Intermediário',
+    description: 'Setup recente, resolve problemas mas ainda aprendendo'
+  },
+  { 
+    name: 'Kubernetes', 
+    icon: 'kubernetes/kubernetes-plain.svg', 
+    category: 'DevOps / Infra', 
+    level: 'Teórico',
+    description: 'Estudou para EY, pouca prática'
+  }
 ];

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
+import { STACKS_DATA } from '../../data/stacks.data';
 
 @Component({
   selector: 'app-hero',
@@ -11,6 +12,7 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class HeroComponent {
   themeService = inject(ThemeService);
+  stacks = STACKS_DATA;
 
   scrollToContact(event: Event) {
     event.preventDefault();
