@@ -596,9 +596,8 @@ ul, ol {
 // 🦶 FOOTER
 // ─────────────────────────────────────────────────────────────
 .footer {
-  padding: $space-2xl;
+  padding: $space-md;
   border-top: 1px solid var(--border);
-  text-align: center;
   color: var(--text-muted);
   font-size: $font-sm;
   transition: border-color $transition-theme;

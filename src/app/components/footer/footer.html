@@ -1,20 +1,8 @@
 <footer class="footer" id="contato">
   <div class="container footer-content">
-    <div class="footer-brand">
-      <div class="logo">
-        &lt;<span>JM</span> /&gt;
-      </div>
-      <p class="footer-desc">Desenvolvedor Full Stack especializado em criar experiências digitais excepcionais, focado em performance e UX.</p>
-    </div>
-
-    <div class="footer-links">
-      <h4>Navegação</h4>
-      <nav>
-        <a href="#sobre" (click)="scrollToTarget('sobre', $event)">Sobre</a>
-        <a href="#projetos" (click)="scrollToTarget('projetos', $event)">Projetos</a>
-        <a href="#pessoais" (click)="scrollToTarget('pessoais', $event)">Pessoais</a>
-        <a href="#stacks" (click)="scrollToTarget('stacks', $event)">Stacks</a>
-      </nav>
+    
+    <div class="footer-copyright">
+      <p>&copy; {{ currentYear }} John Mota — Feito com ❤️ e Angular 21</p>
     </div>
 
     <div class="footer-social">
@@ -26,17 +14,14 @@
         <a href="https://linkedin.com/in/john-mota" target="_blank" aria-label="LinkedIn">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
         </a>
+        <a href="https://www.instagram.com/john.mota/" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://wa.me/message/CRLUBKMYCETHL1" target="_blank" aria-label="WhatsApp">
+          <svg viewBox="0 0 448 512" width="20" height="20" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18s-8.8-2.8-12.5 2.8-14.3 18-17.6 21.6-6.5 4-12 1.2-23.4-8.6-44.6-27.6c-16.5-14.8-27.6-33.1-30.9-38.6s-.3-8.5 2.4-11.2c2.5-2.4 5.5-6.4 8.2-9.6 2.8-3.2 3.7-5.5 5.5-9.2 1.8-3.7.9-6.9-.5-9.6s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.6 1.4-14.6 6.9c-5 5.5-19.2 18.8-19.2 46s19.7 53.4 22.4 57 38.6 58.9 93.5 82.6c13.1 5.7 23.3 9 31.3 11.6 13.2 4.2 25.2 3.6 34.7 2.2 10.6-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+        </a>
       </div>
     </div>
-  </div>
 
-  <div class="footer-bottom">
-    <div class="container footer-bottom-content">
-      <p>&copy; {{ currentYear }} John Mota — Feito com ❤️ e Angular 21</p>
-      
-      <button class="back-to-top" (click)="scrollToTop($event)" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-      </button>
-    </div>
   </div>
 </footer>
