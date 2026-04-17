@@ -1,42 +1,140 @@
-<section class="section" id="pessoais">
+<section class="section projects-section" tabindex="0" (keydown)="handleKeyboardEvent($event)" id="pessoais">
   <div class="container">
     <h2 class="section-title">
       <span class="section-title__label">Labs</span><br>
       Projetos Pessoais
     </h2>
+  </div>
     
-    <div class="grid grid--3">
-      @for (project of personalProjects(); track project.id) {
-        <article class="card personal-card">
-          
-          <div class="personal-card__header">
-            <h3 class="card__title">{{ project.name }}</h3>
-            <span *ngIf="project.status" class="status-badge" [class.status-badge--done]="project.status === 'Concluído'">
-              {{ project.status }}
-            </span>
-          </div>
+  <div class="projects-carousel-container">
+      <div class="projects-carousel-wrapper">
+        <button 
+          class="carousel-main-nav-btn carousel-main-nav-btn--prev" 
+          (click)="prevSlide()" 
+          aria-label="Projetos anteriores">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
 
-          <p class="card__description">{{ project.description }}</p>
+        <div class="projects-carousel-viewport" 
+             (touchstart)="onTouchStart($event)" 
+             (touchend)="onTouchEnd($event)">
           
-          <div class="tags">
-            @for (tag of project.tags; track tag) {
-              <span class="tag tag--outline">{{ tag }}</span>
+          <div class="projects-carousel-track" 
+               [style.transform]="'translateX(calc(-100% * ' + currentSlide() + ' / ' + itemsPerView() + '))'"
+               [style.transition]="isTransitioning() ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'">
+            @for (project of infiniteProjects(); track $index) {
+              <div class="carousel-slide" 
+                   [class.is-center]="$index === centerIndex"
+                   [style.flex]="'0 0 calc(100% / ' + itemsPerView() + ')'">
+                <article class="card project-card">
+                  <div class="card-content">
+                    <header class="card__header">
+                      <h3 class="card__title">{{ project.name }}</h3>
+                      @if (project.status) {
+                        <span class="status-badge" [class.status-badge--done]="project.status === 'Concluído'">
+                          {{ project.status }}
+                        </span>
+                      }
+                    </header>
+                    
+                    <p class="card__description">{{ project.description }}</p>
+                    
+                    <div class="tags">
+                      @for (tag of project.tags; track tag) {
+                        <span class="tag tag--sm">{{ tag }}</span>
+                      }
+                    </div>
+                    
+                    <footer class="card__footer">
+                      <div class="project-actions">
+                        <button (click)="openDetails(project)" class="btn btn--sm btn--secondary">
+                          Ver Detalhes
+                        </button>
+                        
+                        @if (project.repo) {
+                          <a [href]="project.repo" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">
+                            Repositório
+                          </a>
+                        } @else if (project.link) {
+                          <a [href]="project.link" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">
+                            Demo
+                          </a>
+                        }
+                      </div>
+                    </footer>
+                  </div>
+                </article>
+              </div>
             }
           </div>
-          
-          <footer class="card__footer">
-            <div class="links">
-              <a *ngIf="project.repo" [href]="project.repo" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" aria-label="Github repository">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                Repo
-              </a>
-              <a *ngIf="project.link" [href]="project.link" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--secondary" aria-label="Live Demo">
-                Demo
-              </a>
-            </div>
-          </footer>
-        </article>
-      }
+        </div>
+
+        <button 
+          class="carousel-main-nav-btn carousel-main-nav-btn--next" 
+          (click)="nextSlide()" 
+          aria-label="Próximos projetos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="projects-carousel-dots-wrapper">
+        <div class="projects-carousel-dots">
+          @for (project of originalProjects; track project.id) {
+            <button class="dot-btn" 
+                    [class.active]="((currentSlide() % originalProjects.length) + originalProjects.length) % originalProjects.length === $index" 
+                    (click)="goToSlide($index)"
+                    [attr.aria-label]="'Ir para o slide ' + ($index + 1)"></button>
+          }
+        </div>
+      </div>
     </div>
-  </div>
+  @if (selectedProject()) {
+    <div class="modal-overlay" (click)="closeDetails()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="closeDetails()" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        
+        <div class="modal-body">
+          <div class="modal-header">
+            <h2 class="modal-title">{{ selectedProject()?.name }}</h2>
+            <div class="modal-tags">
+              @for (tag of selectedProject()?.tags; track tag) {
+                <span class="tag tag--sm">{{ tag }}</span>
+              }
+            </div>
+          </div>
+          
+          <div class="modal-scroll-area">
+            <div class="modal-info">
+              @if (selectedProject()?.role) {
+                <div class="info-item">
+                  <strong>Papel no Projeto:</strong>
+                  <span>{{ selectedProject()?.role }}</span>
+                </div>
+              }
+              @if (selectedProject()?.status) {
+                <div class="info-item">
+                  <strong>Status:</strong>
+                  <span>{{ selectedProject()?.status }}</span>
+                </div>
+              }
+            </div>
+
+            <div class="modal-description">
+              <h3>Sobre o Projeto</h3>
+              <p>{{ selectedProject()?.description }}</p>
+            </div>
+
+            @if (selectedProject()?.details) {
+              <div class="modal-work">
+                <h3>Como eu trabalhei</h3>
+                <p>{{ selectedProject()?.details }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </section>
