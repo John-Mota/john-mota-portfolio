@@ -1,5 +1,10 @@
 @use "../../../variables" as *;
 
+:host {
+  display: block;
+  width: 100%;
+}
+
 .hero-container {
   display: flex;
   align-items: center;
@@ -12,6 +17,12 @@
     text-align: center;
     padding: $space-3xl $space-md;
     gap: $space-2xl;
+  }
+
+  @include mobile {
+    padding: $space-2xl $space-sm;
+    min-height: auto;
+    margin-top: $space-xl;
   }
 }
 
@@ -72,6 +83,18 @@
   @include tablet {
     justify-content: center;
   }
+
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+    
+    .btn {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 .hero-tech-stack {
@@ -79,11 +102,16 @@
   flex-wrap: wrap;
   gap: $space-md;
   margin-top: $space-lg;
-  max-width: 350px; 
-  margin-inline: auto;
+  max-width: 400px;
   
   @include tablet {
     max-width: 100%;
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  @include mobile {
+    gap: $space-sm;
   }
 }
 
@@ -218,12 +246,15 @@
   align-items: center;
 
   @include tablet {
-    max-width: 300px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
   }
 }
 
 .hero-image {
-  width: 50%;
+  width: 55%;
+  max-width: 380px;
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center top;
@@ -235,13 +266,20 @@
   animation: float 6s ease-in-out infinite;
 
   @include tablet {
+    width: 75%;
     max-width: 300px;
+  }
+
+  @include mobile {
+    width: 85%;
+    max-width: 250px;
   }
 }
 
 .hero-image-backdrop {
   position: absolute;
-  width: 55%;
+  width: 60%;
+  max-width: 400px;
   aspect-ratio: 1;
   border-radius: $radius-full;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
@@ -250,6 +288,16 @@
   opacity: 0.6;
   transform: translate(10px, 10px);
   animation: pulse-glow 4s ease-in-out infinite;
+  
+  @include tablet {
+    width: 80%;
+    max-width: 320px;
+  }
+
+  @include mobile {
+    width: 90%;
+    max-width: 270px;
+  }
 }
 
 /* Typewriter animation */
