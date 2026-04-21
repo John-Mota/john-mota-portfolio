@@ -59,7 +59,7 @@ export class PersonalProjectsComponent implements OnInit, OnDestroy {
   updateItemsPerView() {
     const width = window.innerWidth;
     if (width < 768) {
-      this.itemsPerView.set(1);
+      this.itemsPerView.set(1.2);
     } else {
       // Force 3 items for center mode to look correct on both tablet and desktop
       this.itemsPerView.set(3);
@@ -67,7 +67,7 @@ export class PersonalProjectsComponent implements OnInit, OnDestroy {
   }
 
   get centerIndex(): number {
-    return this.currentSlide() + Math.floor(this.itemsPerView() / 2);
+    return this.currentSlide();
   }
 
   goToSlide(index: number) {
