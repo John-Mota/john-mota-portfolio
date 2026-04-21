@@ -20,7 +20,7 @@
              (touchend)="onTouchEnd($event)">
           
           <div class="projects-carousel-track" 
-               [style.transform]="'translateX(calc(-100% * ' + currentSlide() + ' / ' + itemsPerView() + '))'"
+               [style.transform]="'translateX(' + (-100 * currentSlide() / itemsPerView() + 50 - 50 / itemsPerView()) + '%)'"
                [style.transition]="isTransitioning() ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'">
             @for (project of infiniteProjects(); track $index) {
               <div class="carousel-slide" 

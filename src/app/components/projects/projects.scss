@@ -424,6 +424,10 @@
 }
 
 @media (max-width: 768px) {
+  .projects-carousel-wrapper {
+    padding: 0;
+  }
+  
   .carousel-main-nav-btn {
     display: none; // Hides main arrows on mobile to rely on swipe
   }
@@ -438,8 +442,7 @@
   }
 
   .projects-carousel-track {
-    // Optional: add a slight gap to avoid overlapping visual artifacts
-    gap: $space-md;
+    gap: 0;
   }
 
   .carousel-slide {
