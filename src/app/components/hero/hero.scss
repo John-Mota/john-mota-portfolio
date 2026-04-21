@@ -103,11 +103,11 @@
   gap: $space-md;
   margin-top: $space-lg;
   max-width: 400px;
+  margin-inline: auto;
+  justify-content: center;
   
   @include tablet {
     max-width: 100%;
-    justify-content: center;
-    margin-inline: auto;
   }
 
   @include mobile {
